@@ -1,0 +1,5 @@
+rootProject.name = "CodeHub-Kotlin"
+include ':app'
+include ':model'
+include ':util'
+include ':net'
