@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">CodeHub-Kotlin</string>
+
+    <string name="homepage">Home</string>
+    <string name="project">Project</string>
+    <string name="official_account">Official</string>
+    <string name="user">User</string>
+
 </resources>

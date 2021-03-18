@@ -1,5 +1,6 @@
 package ac.hurley.codehub_kotlin.compose
 
+import ac.hurley.codehub_kotlin.compose.common.ProvideImageLoader
 import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
@@ -16,7 +17,9 @@ class MainActivity : AppCompatActivity() {
 
         setContent {
             ProvideWindowInsets {
-
+                ProvideImageLoader {
+                    NavGraphPage()
+                }
             }
         }
     }

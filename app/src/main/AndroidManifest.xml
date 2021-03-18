@@ -28,6 +28,14 @@
         tools:replace="android:theme"
         tools:targetApi="m">
 
+        <activity android:name=".compose.MainActivity"
+            android:theme="@style/AppTheme.NoActionBars">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="ac.hurley.codehub_kotlin.fileprovider"

@@ -1,5 +1,5 @@
 plugins {
-    id 'com.android.application'
+    id 'com.android.library'
     id 'kotlin-android'
 }
 
@@ -8,7 +8,6 @@ android {
     buildToolsVersion cfgs.buildToolsVersion
 
     defaultConfig {
-        applicationId "ac.hurley.util"
         minSdkVersion cfgs.minSdkVersion
         targetSdkVersion cfgs.targetSdkVersion
         versionCode cfgs.versionCode
