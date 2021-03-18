@@ -6,4 +6,8 @@
     <string name="official_account">Official</string>
     <string name="user">User</string>
 
+    <!-- Login -->
+    <string name="click_login">Click to Login</string>
+    <string name="not_login">Not Logged</string>
+    <string name="logout">Logout</string>
 </resources>

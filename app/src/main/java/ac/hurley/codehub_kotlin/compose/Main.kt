@@ -16,6 +16,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -33,7 +34,7 @@ fun Main(actions: MainActions, themeViewModel: ThemeViewModel) {
 
     // 定义 UI 界面
     Scaffold(
-        backgroundColor = colorResource(id = R.color.blue),
+        backgroundColor = colorResource(id = R.color.gray),
         bottomBar = {
             BottomNavigation(
                 Modifier.navigationBarsHeight(additional = 56.dp)
