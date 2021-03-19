@@ -1,15 +1,19 @@
 package ac.hurley.codehub_kotlin.compose.viewmodel
 
-import ac.hurley.codehub_kotlin.compose.Tabs
+import ac.hurley.codehub_kotlin.compose.AppState
+import android.app.Application
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 
-class HomeViewModel : ViewModel() {
-    private val _position = MutableLiveData(Tabs.HOMEPAGE)
-    val position: LiveData<Tabs> = _position
+class HomeViewModel(application: Application) : BaseViewModel(application = application) {
 
-    fun onPositionChanged(position: Tabs) {
-        _position.value = position
-    }
+    private val _state = MutableLiveData<AppState>()
+
+    val state: LiveData<AppState>
+        get() = _state
+
+    private val _bannerState = MutableLiveData<AppState>()
+
+    val bannerState: LiveData<AppState>
+        get() = _bannerState
 }

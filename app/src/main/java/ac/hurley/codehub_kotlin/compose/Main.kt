@@ -5,7 +5,7 @@ import ac.hurley.codehub_kotlin.compose.nav.HomePage
 import ac.hurley.codehub_kotlin.compose.nav.OfficialAccountPage
 import ac.hurley.codehub_kotlin.compose.nav.ProjectPage
 import ac.hurley.codehub_kotlin.compose.nav.UserPage
-import ac.hurley.codehub_kotlin.compose.viewmodel.HomeViewModel
+import ac.hurley.codehub_kotlin.compose.viewmodel.MainViewModel
 import ac.hurley.codehub_kotlin.compose.viewmodel.ThemeViewModel
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
@@ -16,7 +16,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -28,7 +27,7 @@ import java.util.*
 
 @Composable
 fun Main(actions: MainActions, themeViewModel: ThemeViewModel) {
-    val viewModel: HomeViewModel = viewModel()
+    val viewModel: MainViewModel = viewModel()
     val position by viewModel.position.observeAsState()
     val tabs = Tabs.values()
 

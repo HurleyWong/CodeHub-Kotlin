@@ -5,6 +5,7 @@
     <string name="project">Project</string>
     <string name="official_account">Official</string>
     <string name="user">User</string>
+    <string name="search">Search</string>
 
     <!-- Login -->
     <string name="click_login">Click to Login</string>
