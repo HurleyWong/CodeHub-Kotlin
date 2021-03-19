@@ -17,6 +17,7 @@
         tools:ignore="ProtectedPermissions" />
 
     <application
+        android:name=".compose.App"
         android:allowBackup="true"
         android:extractNativeLibs="true"
         android:icon="@mipmap/ic_launcher"

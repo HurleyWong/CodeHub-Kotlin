@@ -8,4 +8,5 @@ import kotlinx.parcelize.Parcelize
 data class Article(
     @ColumnInfo(name = "desc") var desc: String = "",
     @ColumnInfo(name = "title") var title: String = "",
+    @ColumnInfo(name = "link") val link: String = "",
 ) : Parcelable

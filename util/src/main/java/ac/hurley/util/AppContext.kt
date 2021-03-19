@@ -24,23 +24,23 @@ object AppContext {
     }
 
     val username: String
-        get() = DataStoreUtils.readStringData(USERNAME)
+        get() = dataStore.readStringData(USERNAME)
     val nickname: String
-        get() = DataStoreUtils.readStringData(NICK_NAME)
+        get() = dataStore.readStringData(NICK_NAME)
 
     /**
      * 根据 dataStore 中存储的信息判断用户是否已登录
      */
     var isLogin: Boolean
-        get() = DataStoreUtils.readBooleanData(IS_LOGIN)
+        get() = dataStore.readBooleanData(IS_LOGIN)
         set(bool) {
-            DataStoreUtils.saveSyncBooleanData(IS_LOGIN, bool)
+            dataStore.saveSyncBooleanData(IS_LOGIN, bool)
         }
 
     /**
      * 注销用户登录
      */
     fun logout() {
-        DataStoreUtils.clearSync()
+        dataStore.clearSync()
     }
 }

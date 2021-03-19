@@ -31,11 +31,11 @@ fun UserPage(actions: MainActions, themeViewModel: ThemeViewModel) {
                         .fillMaxSize()
                         .verticalScroll(scrollState),
                 ) {
-//                    UserInfo(
-//                        article = actions.article,
-//                        login = actions.login,
-//                        containerHeight = this@BoxWithConstraints.maxHeight
-//                    )
+                    UserInfo(
+                        article = actions.article,
+                        login = actions.login,
+                        containerHeight = this@BoxWithConstraints.maxHeight
+                    )
                 }
             }
         }
@@ -57,6 +57,16 @@ private fun UserInfo(article: (Article) -> Unit, login: () -> Unit, containerHei
                 NameAndPos(false, login)
             }
         }
+
+        UserProperty(
+            article1 = Article(title = "Blog", link = "https://blog.withh.life/"),
+            article2 = article
+        )
+
+        UserProperty(
+            article1 = Article(title = "Github", link = "https://github.com/HurleyJames23/"),
+            article2 = article
+        )
 
         // 如果已经登录，切换为注销登录按钮
         if (AppContext.isLogin) {
@@ -114,6 +124,28 @@ private fun Position(refresh: Boolean, modifier: Modifier = Modifier) {
         Text(
             text = if (AppContext.isLogin && refresh) AppContext.username else stringResource(id = R.string.click_login),
             modifier = modifier, style = MaterialTheme.typography.body1
+        )
+    }
+}
+
+@Composable
+fun UserProperty(article1: Article, article2: (Article) -> Unit) {
+    Column(modifier = Modifier
+        .clickable { article2(article1) }
+        .padding(start = 16.dp, end = 16.dp, bottom = 16.dp)) {
+        Divider()
+        CompositionLocalProvider(LocalContentAlpha provides ContentAlpha.medium) {
+            Text(
+                text = article1.title,
+                modifier = Modifier.baselineHeight(24.dp),
+                style = MaterialTheme.typography.caption
+            )
+        }
+        val style = MaterialTheme.typography.body1
+        Text(
+            text = article1.title,
+            modifier = Modifier.baselineHeight(24.dp),
+            style = style
         )
     }
 }
