@@ -1,4 +1,4 @@
-package ac.hurley.codehub_kotlin.compose.login
+package ac.hurley.codehub_kotlin.compose.state
 
 import androidx.compose.runtime.*
 

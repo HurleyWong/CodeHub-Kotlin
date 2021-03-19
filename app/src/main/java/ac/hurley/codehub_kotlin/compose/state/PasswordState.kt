@@ -1,6 +1,7 @@
-package ac.hurley.codehub_kotlin.compose.login
+package ac.hurley.codehub_kotlin.compose.state
 
 import ac.hurley.codehub_kotlin.R
+import ac.hurley.codehub_kotlin.compose.state.TextFieldState
 import com.blankj.utilcode.util.StringUtils
 import java.util.regex.Pattern
 
