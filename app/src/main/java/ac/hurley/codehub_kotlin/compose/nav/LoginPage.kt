@@ -28,7 +28,7 @@ fun LoginPage(onNavigationEvent: MainActions, viewModel: LoginViewModel = viewMo
     Login(onNavigationEvent = { event ->
         when (event) {
             is LoginEvent.Login -> {
-                viewModel.loginOrRegister(Account(event.email, event.password, true))
+                viewModel.loginOrRegister(Account(event.account, event.password, true))
             }
             LoginEvent.Register -> {
                 viewModel.logout()
@@ -82,8 +82,8 @@ fun Login(onNavigationEvent: (LoginEvent) -> Unit) {
         content = {
             LoginInput(modifier = Modifier.fillMaxWidth()) {
                 Column(modifier = Modifier.fillMaxWidth()) {
-                    LoginContent(onLoginSubmitted = { email, password ->
-                        onNavigationEvent(LoginEvent.Login(email, password))
+                    LoginContent(onLoginSubmitted = { account, password ->
+                        onNavigationEvent(LoginEvent.Login(account, password))
                     })
 
                     Spacer(modifier = Modifier.height(16.dp))
@@ -117,17 +117,17 @@ fun Login(onNavigationEvent: (LoginEvent) -> Unit) {
 }
 
 @Composable
-fun LoginContent(onLoginSubmitted: (email: String, password: String) -> Unit) {
+fun LoginContent(onLoginSubmitted: (account: String, password: String) -> Unit) {
     Column(modifier = Modifier.fillMaxWidth()) {
         val focusRequester = remember {
             FocusRequester()
         }
-        val emailState = remember {
-            EmailState()
+        val accountState = remember {
+            AccountState()
         }
 
         // 邮箱行
-        Email(emailState = emailState, onImeAction = { focusRequester.requestFocus() })
+        Account(accountState = accountState, onImeAction = { focusRequester.requestFocus() })
 
         Spacer(modifier = Modifier.height(16.dp))
 
@@ -139,18 +139,18 @@ fun LoginContent(onLoginSubmitted: (email: String, password: String) -> Unit) {
             passwordState = passwordState,
             modifier = Modifier.focusRequester(focusRequester = focusRequester),
             onImeAction = {
-                onLoginSubmitted(emailState.text, passwordState.text)
+                onLoginSubmitted(accountState.text, passwordState.text)
             })
         Spacer(modifier = Modifier.height(16.dp))
 
         // 登录按钮
         Button(
             onClick = {
-                onLoginSubmitted(emailState.text, passwordState.text)
+                onLoginSubmitted(accountState.text, passwordState.text)
             },
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(vertical = 16.dp), enabled = emailState.isValid && passwordState.isValid
+                .padding(vertical = 16.dp), enabled = accountState.isValid && passwordState.isValid
         ) {
             Text(text = stringResource(id = R.string.login))
         }
@@ -197,7 +197,7 @@ fun SnackBarError(
 
 
 sealed class LoginEvent {
-    data class Login(val email: String, val password: String) : LoginEvent()
+    data class Login(val account: String, val password: String) : LoginEvent()
     object Register : LoginEvent()
     object LoginAsGuest : LoginEvent()
     object NavBack : LoginEvent()

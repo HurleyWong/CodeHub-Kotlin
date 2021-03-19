@@ -12,7 +12,7 @@
     <string name="not_login">Not Logged</string>
     <string name="login">Login</string>
     <string name="logout">Logout</string>
-    <string name="email">Email</string>
+    <string name="email_tel">Email or Tel</string>
     <string name="password">Password</string>
     <string name="show_password">Show Password</string>
     <string name="hide_password">Hide Password</string>
@@ -21,7 +21,7 @@
     <!-- Tips -->
     <string name="unavailable">Unavailable</string>
     <string name="dismiss">Dismiss</string>
-    <string name="invalid_email">Invalid Email</string>
+    <string name="invalid_account">Invalid Account</string>
     <string name="invalid_password">Invalid Password</string>
     <string name="login_success">Login Successful</string>
     <string name="register_success">Register Successful</string>

@@ -28,7 +28,7 @@ open class TextFieldState(
     fun showErrors() = !isValid && showErrors
 
     open fun getError(): String? {
-        return if (showErrors) {
+        return if (showErrors()) {
             errorFor(text)
         } else {
             null

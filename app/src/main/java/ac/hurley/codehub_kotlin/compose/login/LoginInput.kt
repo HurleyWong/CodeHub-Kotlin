@@ -40,20 +40,20 @@ fun LoginInput(modifier: Modifier = Modifier, content: @Composable() () -> Unit)
 }
 
 @Composable
-fun Email(
-    emailState: EmailState = remember { EmailState() },
+fun Account(
+    accountState: AccountState = remember { AccountState() },
     imeAction: ImeAction = ImeAction.Next,
     onImeAction: () -> Unit = {}
 ) {
     OutlinedTextField(
-        value = emailState.text,
+        value = accountState.text,
         onValueChange = {
-            emailState.text = it
+            accountState.text = it
         },
         label = {
             CompositionLocalProvider(LocalContentAlpha provides ContentAlpha.medium) {
                 Text(
-                    text = stringResource(id = R.string.email),
+                    text = stringResource(id = R.string.email_tel),
                     style = MaterialTheme.typography.body2
                 )
             }
@@ -62,13 +62,13 @@ fun Email(
             .fillMaxWidth()
             .onFocusChanged { focusState ->
                 val focused = focusState == FocusState.Active
-                emailState.onFocusChange(focused = focused)
+                accountState.onFocusChange(focused = focused)
                 if (!focused) {
-                    emailState.enableShowErrors()
+                    accountState.enableShowErrors()
                 }
             },
         textStyle = MaterialTheme.typography.body2,
-        isError = emailState.showErrors(),
+        isError = accountState.showErrors(),
         keyboardOptions = KeyboardOptions.Default.copy(imeAction = imeAction),
         keyboardActions = KeyboardActions(
             onDone = {
@@ -76,7 +76,7 @@ fun Email(
             }
         )
     )
-    emailState.getError()?.let { error -> TextFieldError(textError = error) }
+    accountState.getError()?.let { error -> TextFieldError(textError = error) }
 }
 
 @Composable
