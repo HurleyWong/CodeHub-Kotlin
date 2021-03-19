@@ -38,6 +38,14 @@ object AppContext {
         }
 
     /**
+     * 设置用户信息
+     */
+    fun setUserInfo(nickname: String, username: String) {
+        dataStore.saveSyncStringData(NICK_NAME, nickname)
+        dataStore.saveSyncStringData(USERNAME, username)
+    }
+
+    /**
      * 注销用户登录
      */
     fun logout() {
