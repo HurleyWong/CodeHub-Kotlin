@@ -1,4 +1,4 @@
-package ac.hurley.codehub_kotlin.compose.nav
+package ac.hurley.codehub_kotlin.compose.page
 
 import ac.hurley.model.room.entity.Article
 import androidx.compose.runtime.Composable

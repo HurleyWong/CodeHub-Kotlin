@@ -1,10 +1,9 @@
-package ac.hurley.codehub_kotlin.compose.nav
+package ac.hurley.codehub_kotlin.compose.page
 
 import ac.hurley.codehub_kotlin.compose.AppLoading
 import ac.hurley.codehub_kotlin.compose.MainActions
 import ac.hurley.codehub_kotlin.compose.common.AppBar
 import ac.hurley.codehub_kotlin.compose.viewmodel.HomeViewModel
-import ac.hurley.codehub_kotlin.compose.viewmodel.MainViewModel
 import ac.hurley.codehub_kotlin.compose.viewmodel.REFRESH_START
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column

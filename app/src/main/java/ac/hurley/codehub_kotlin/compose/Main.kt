@@ -1,10 +1,10 @@
 package ac.hurley.codehub_kotlin.compose
 
 import ac.hurley.codehub_kotlin.R
-import ac.hurley.codehub_kotlin.compose.nav.HomePage
-import ac.hurley.codehub_kotlin.compose.nav.OfficialAccountPage
-import ac.hurley.codehub_kotlin.compose.nav.ProjectPage
-import ac.hurley.codehub_kotlin.compose.nav.UserPage
+import ac.hurley.codehub_kotlin.compose.page.HomePage
+import ac.hurley.codehub_kotlin.compose.page.OfficialAccountPage
+import ac.hurley.codehub_kotlin.compose.page.ProjectPage
+import ac.hurley.codehub_kotlin.compose.page.UserPage
 import ac.hurley.codehub_kotlin.compose.viewmodel.MainViewModel
 import ac.hurley.codehub_kotlin.compose.viewmodel.ThemeViewModel
 import androidx.annotation.DrawableRes

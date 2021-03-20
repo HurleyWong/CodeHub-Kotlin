@@ -2,9 +2,9 @@ package ac.hurley.codehub_kotlin.compose
 
 import ac.hurley.codehub_kotlin.compose.MainNav.ARTICLE_ROUTE_URL
 import ac.hurley.codehub_kotlin.compose.common.article.ArticlePage
-import ac.hurley.codehub_kotlin.compose.nav.AboutPage
-import ac.hurley.codehub_kotlin.compose.nav.LoginPage
-import ac.hurley.codehub_kotlin.compose.nav.SearchPage
+import ac.hurley.codehub_kotlin.compose.page.AboutPage
+import ac.hurley.codehub_kotlin.compose.page.LoginPage
+import ac.hurley.codehub_kotlin.compose.page.SearchPage
 import ac.hurley.codehub_kotlin.compose.theme.Theme
 import ac.hurley.codehub_kotlin.compose.theme.Theme2
 import ac.hurley.codehub_kotlin.compose.viewmodel.ThemeViewModel
@@ -14,10 +14,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.remember
-import androidx.compose.ui.input.key.Key.Companion.Home
 import androidx.lifecycle.viewmodel.compose.viewModel
-import androidx.navigation.NavDestination
-import androidx.navigation.NavGraph
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.compose.*

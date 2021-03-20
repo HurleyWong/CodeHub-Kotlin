@@ -25,4 +25,7 @@
     <string name="invalid_password">Invalid Password</string>
     <string name="login_success">Login Successful</string>
     <string name="register_success">Register Successful</string>
+
+    <string name="bad_network">Network Connection Failed</string>
+    <string name="network_load_failed">Network Load Failed</string>
 </resources>
