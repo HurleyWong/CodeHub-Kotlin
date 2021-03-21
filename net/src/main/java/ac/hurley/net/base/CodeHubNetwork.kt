@@ -1,10 +1,46 @@
 package ac.hurley.net.base
 
+import ac.hurley.net.service.HomeService
 import ac.hurley.net.service.LoginService
 import ac.hurley.net.service.OfficialService
 import ac.hurley.net.service.ProjectService
 
 object CodeHubNetwork {
+
+    /**
+     * 主页相关操作
+     */
+    private val homeService = ServiceManager.create(HomeService::class.java)
+
+    /**
+     * 获取 Banner 轮播图
+     */
+    suspend fun getBanner() = homeService.getBanner()
+
+    /**
+     * 获取置顶文章列表
+     */
+    suspend fun getTopArticleList() = homeService.getTopArticles()
+
+    /**
+     * 获取首页文章列表
+     */
+    suspend fun getArticleList(page: Int) = homeService.getArticle(page)
+
+    /**
+     * 获取搜索的文章列表
+     */
+    suspend fun getQueryArticleList(page: Int, k: String) = homeService.getQueryArticleList(page, k)
+
+    /**
+     * 获取热词
+     */
+    suspend fun getHotKey() = homeService.getHotKey()
+
+    /**
+     * 获取常用网站 | 友链
+     */
+    suspend fun getWebsites() = homeService.getFriendWebsites()
 
     /**
      * 登录相关操作
@@ -51,6 +87,7 @@ data class QueryArticle(var page: Int, var cid: Int, var isRefresh: Boolean)
 const val ONE_DAY = 1000 * 60 * 60 * 24
 const val FOUR_HOUR = 1000 * 60 * 60 * 4
 
+const val DOWNLOAD_IMAGE_TIME = "DownloadImageTime"
 const val DOWNLOAD_TOP_ARTICLE_TIME = "DownloadTopArticleTime"
 const val DOWNLOAD_ARTICLE_TIME = "DownloadArticleTime"
 const val DOWNLOAD_PROJECT_ARTICLE_TIME = "DownloadProjectArticleTime"

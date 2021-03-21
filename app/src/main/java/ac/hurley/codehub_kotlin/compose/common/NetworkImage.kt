@@ -28,7 +28,7 @@ fun NetworkImage(
     contentDescription: String?,
     modifier: Modifier = Modifier,
     contentScale: ContentScale = ContentScale.Crop,
-    placeholderColor: Color = MaterialTheme.colors.compositedOnSurface(alpha = 0.2f)
+    placeholderColor: Color? = MaterialTheme.colors.compositedOnSurface(alpha = 0.2f)
 ) {
     CoilImage(
         data = url,
@@ -37,9 +37,11 @@ fun NetworkImage(
         contentScale = contentScale,
         loading = {
             if (placeholderColor != null) {
-                Spacer(modifier = modifier
-                    .fillMaxSize()
-                    .background(placeholderColor))
+                Spacer(
+                    modifier = modifier
+                        .fillMaxSize()
+                        .background(placeholderColor)
+                )
             }
         }
     )

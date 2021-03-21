@@ -1,11 +1,18 @@
 package ac.hurley.codehub_kotlin.compose.viewmodel
 
 import ac.hurley.codehub_kotlin.compose.AppState
+import ac.hurley.codehub_kotlin.compose.repository.HomeRepository
+import ac.hurley.model.room.entity.Article
 import android.app.Application
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class HomeViewModel(application: Application) : BaseViewModel(application = application) {
+
+    private val homeRepository: HomeRepository = HomeRepository(application = application)
 
     private val _state = MutableLiveData<AppState>()
 
@@ -16,4 +23,28 @@ class HomeViewModel(application: Application) : BaseViewModel(application = appl
 
     val bannerState: LiveData<AppState>
         get() = _bannerState
+
+    private val _articleDataList = MutableLiveData<ArrayList<Article>>()
+
+    private val _page = MutableLiveData<Int>()
+
+    val page: LiveData<Int>
+        get() = _page
+
+    fun onPageChanged(refresh: Int) {
+        _page.postValue(refresh)
+    }
+
+    /**
+     * 获取轮播图
+     */
+    fun getBanner() {
+        viewModelScope.launch(Dispatchers.IO) {
+            homeRepository.getBanner(_bannerState)
+        }
+    }
+
+    fun getArticleList(isLoad: Boolean = false, isRefresh: Boolean = true) {
+//        viewModelScope.launch(Dispatchers.IO) {}
+    }
 }

@@ -67,7 +67,7 @@ fun ArticleItem(
                     Text(
                         text = if (TextUtils.isEmpty(article.author)) article.shareUser else article.author,
                         color = MaterialTheme.colors.primary,
-                        style = MaterialTheme.typography.subtitle1,
+                        style = titleStyle,
                         modifier = Modifier
                             .weight(1f)
                             .wrapContentWidth(Alignment.Start)
@@ -76,7 +76,7 @@ fun ArticleItem(
                     Text(
                         text = article.niceDate,
                         color = MaterialTheme.colors.primary,
-                        style = MaterialTheme.typography.subtitle1,
+                        style = titleStyle,
                         modifier = Modifier
                             .weight(1f)
                             .wrapContentWidth(Alignment.End)
