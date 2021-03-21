@@ -1,6 +1,7 @@
 package ac.hurley.net.base
 
 import ac.hurley.net.service.LoginService
+import ac.hurley.net.service.OfficialService
 import ac.hurley.net.service.ProjectService
 
 object CodeHubNetwork {
@@ -31,6 +32,17 @@ object CodeHubNetwork {
 
     // 获取某个分类下的项目数据
     suspend fun getProject(page: Int, cid: Int) = projectService.getProject(page, cid)
+
+    /**
+     * 公众号相关操作
+     */
+    private val officialService = ServiceManager.create(OfficialService::class.java)
+
+    // 获取公众号列表
+    suspend fun getWxArticleTree() = officialService.getWxArticleTree()
+
+    // 获取公众号列表下的文章
+    suspend fun getWxArticle(page: Int, cid: Int) = officialService.getWxArticle(page, cid)
 }
 
 data class QueryHomeArticle(var page: Int, var isRefresh: Boolean)

@@ -4,10 +4,7 @@ import ac.hurley.codehub_kotlin.R
 import ac.hurley.codehub_kotlin.compose.AppLoading
 import ac.hurley.codehub_kotlin.compose.ReqError
 import ac.hurley.codehub_kotlin.compose.ReqSuccess
-import ac.hurley.codehub_kotlin.compose.view.ArticleListItem
-import ac.hurley.codehub_kotlin.compose.view.ErrorContent
-import ac.hurley.codehub_kotlin.compose.view.LoadingContent
-import ac.hurley.codehub_kotlin.compose.view.SwipeToRefreshAndLoadLayout
+import ac.hurley.codehub_kotlin.compose.view.*
 import ac.hurley.codehub_kotlin.compose.viewmodel.BasePageViewModel
 import ac.hurley.codehub_kotlin.compose.viewmodel.REFRESH_START
 import ac.hurley.codehub_kotlin.compose.viewmodel.REFRESH_STOP
@@ -28,6 +25,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import com.blankj.utilcode.util.LogUtils
 import dev.chrisbanes.accompanist.insets.statusBarsHeight
 import kotlinx.coroutines.launch
 
@@ -72,23 +70,27 @@ fun ClassifyListPage(
                     }
                     is ReqSuccess<*> -> {
                         loadState = true
+                        // 请求返回的列表数据
                         val data = result as ReqSuccess<List<Classify>>
+                        // 列表长度
+                        val length = data.data.size
+
                         ScrollableTabRow(
                             selectedTabIndex = position ?: 0,
                             modifier = Modifier.wrapContentWidth(),
                             edgePadding = 3.dp
                         ) {
-                            data.data.forEachIndexed { index, projectClassify ->
+                            data.data.forEachIndexed { index, classify ->
                                 // Tab 栏显示具体的分类
                                 Tab(
-                                    text = { Text(projectClassify.name) },
+                                    text = { Text(classify.name) },
                                     selected = position == index,
                                     onClick = {
                                         articleViewModel.getDataList(
                                             // 根据分类 id，查询该分类下的文章列表
                                             QueryArticle(
                                                 0,
-                                                projectClassify.id,
+                                                classify.id,
                                                 true
                                             )
                                         )
@@ -142,13 +144,28 @@ fun ClassifyListPage(
                                         viewModel.onLoadStateChanged(REFRESH_STOP)
                                         loadPageState = true
                                         val articles = articleList as ReqSuccess<List<Article>>
-                                        LazyColumn(modifier, listState) {
-                                            itemsIndexed(articles.data) { index, article ->
-                                                ArticleListItem(
-                                                    article = article,
-                                                    index = index,
-                                                    toArticle = toArticle
-                                                )
+
+                                        // 如果 order 在这个区间内，说明请求的是微信公众号的列表
+                                        if (data.data[0].order >= 190000 && data.data[length - 1].order <= 190100) {
+                                            LazyColumn(modifier, listState) {
+                                                itemsIndexed(articles.data) { index, article ->
+                                                    ArticleListItem(
+                                                        article = article,
+                                                        index = index,
+                                                        toArticle = toArticle
+                                                    )
+                                                }
+                                            }
+                                            // 否则请求的是项目分类的列表
+                                        } else {
+                                            LazyColumn(modifier, listState) {
+                                                itemsIndexed(articles.data) { index, article ->
+                                                    ProjectListItem(
+                                                        article = article,
+                                                        index = index,
+                                                        toArticle = toArticle
+                                                    )
+                                                }
                                             }
                                         }
                                     }
