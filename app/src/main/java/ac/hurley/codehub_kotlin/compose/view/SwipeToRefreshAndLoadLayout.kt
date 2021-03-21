@@ -23,7 +23,7 @@ private val LoadDistance = 100.dp
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
-fun SwipeToRefreshAndLoad(
+fun SwipeToRefreshAndLoadLayout(
     stateOfRefresh: Boolean,
     stateOfLoad: Boolean,
     onRefresh: () -> Unit,

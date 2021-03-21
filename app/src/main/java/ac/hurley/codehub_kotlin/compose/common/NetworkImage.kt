@@ -1,6 +1,9 @@
 package ac.hurley.codehub_kotlin.compose.common
 
 import ac.hurley.codehub_kotlin.compose.theme.compositedOnSurface
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
@@ -14,6 +17,7 @@ import coil.annotation.ExperimentalCoilApi
 import coil.intercept.Interceptor
 import coil.request.ImageResult
 import coil.size.PixelSize
+import dev.chrisbanes.accompanist.coil.CoilImage
 import dev.chrisbanes.accompanist.coil.LocalImageLoader
 import okhttp3.HttpUrl
 
@@ -26,7 +30,19 @@ fun NetworkImage(
     contentScale: ContentScale = ContentScale.Crop,
     placeholderColor: Color = MaterialTheme.colors.compositedOnSurface(alpha = 0.2f)
 ) {
-
+    CoilImage(
+        data = url,
+        modifier = modifier,
+        contentDescription = contentDescription,
+        contentScale = contentScale,
+        loading = {
+            if (placeholderColor != null) {
+                Spacer(modifier = modifier
+                    .fillMaxSize()
+                    .background(placeholderColor))
+            }
+        }
+    )
 }
 
 @Composable

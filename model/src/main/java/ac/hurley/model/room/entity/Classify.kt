@@ -5,8 +5,8 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 
-@Entity(tableName = "project_classify")
-data class ProjectClassify(
+@Entity(tableName = "classify")
+data class Classify(
     @PrimaryKey(autoGenerate = true) val uid: Int,
     @ColumnInfo(name = "course_id") val courseId: Int,
 //    @ColumnInfo(name = "children") val children: List<Any> = arrayListOf(),

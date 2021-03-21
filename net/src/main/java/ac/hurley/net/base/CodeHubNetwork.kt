@@ -36,6 +36,10 @@ object CodeHubNetwork {
 data class QueryHomeArticle(var page: Int, var isRefresh: Boolean)
 data class QueryArticle(var page: Int, var cid: Int, var isRefresh: Boolean)
 
+const val ONE_DAY = 1000 * 60 * 60 * 24
+const val FOUR_HOUR = 1000 * 60 * 60 * 4
+
 const val DOWNLOAD_TOP_ARTICLE_TIME = "DownloadTopArticleTime"
 const val DOWNLOAD_ARTICLE_TIME = "DownloadArticleTime"
 const val DOWNLOAD_PROJECT_ARTICLE_TIME = "DownloadProjectArticleTime"
+const val DOWNLOAD_OFFICIAL_ACCOUNT_ARTICLE_TIME = "DownloadOfficialAccountArticleTime"

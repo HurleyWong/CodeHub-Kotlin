@@ -11,12 +11,12 @@ import androidx.sqlite.db.SupportSQLiteDatabase
 
 @Database(
     entities = [
-        ProjectClassify::class, Article::class, HotKey::class, Banner::class, Almanac::class
-    ], version = 2
+        Classify::class, Article::class, HotKey::class, Banner::class, Almanac::class
+    ], version = 3
 )
 abstract class AppDatabase : RoomDatabase() {
 
-    abstract fun projectClassifyDao(): ProjectClassifyDao
+    abstract fun classifyDao(): ClassifyDao
 
     abstract fun articleDao(): ArticleDao
 

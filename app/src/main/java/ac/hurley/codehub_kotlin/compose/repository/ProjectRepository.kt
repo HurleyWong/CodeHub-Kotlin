@@ -5,7 +5,7 @@ import ac.hurley.model.model.ArticleListModel
 import ac.hurley.model.model.BaseModel
 import ac.hurley.model.room.entity.Article
 import ac.hurley.model.room.entity.PROJECT
-import ac.hurley.model.room.entity.ProjectClassify
+import ac.hurley.model.room.entity.Classify
 import ac.hurley.net.base.CodeHubNetwork
 import ac.hurley.net.base.DOWNLOAD_PROJECT_ARTICLE_TIME
 import ac.hurley.net.base.QueryArticle
@@ -14,7 +14,7 @@ import androidx.lifecycle.MutableLiveData
 
 class ProjectRepository constructor(val application: Application) : ArticleRepository(application = application) {
 
-    override suspend fun getArticleTree(): BaseModel<List<ProjectClassify>> {
+    override suspend fun getArticleTree(): BaseModel<List<Classify>> {
         return CodeHubNetwork.getProjectTree()
     }
 
