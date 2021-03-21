@@ -24,7 +24,7 @@ abstract class AppDatabase : RoomDatabase() {
 
     abstract fun bannerDao(): BannerDao
 
-    abstract fun almanacDao(): AlmanaDao
+    abstract fun almanacDao(): AlmanacDao
 
     companion object {
         @Volatile

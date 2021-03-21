@@ -4,7 +4,7 @@ import ac.hurley.model.room.entity.Almanac
 import androidx.room.*
 
 @Dao
-interface AlmanaDao {
+interface AlmanacDao {
 
     @Query("select * from almanac order by uid desc")
     suspend fun getAlmanacList(): List<Almanac>

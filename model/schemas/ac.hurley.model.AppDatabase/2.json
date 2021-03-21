@@ -2,10 +2,10 @@
   "formatVersion": 1,
   "database": {
     "version": 2,
-    "identityHash": "b276a6ad90af000df2c4f5fd6a90420e",
+    "identityHash": "1d5561f741ceb9ff18aaee157b9708ad",
     "entities": [
       {
-        "tableName": "project_classify",
+        "tableName": "classify",
         "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`uid` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `course_id` INTEGER NOT NULL, `id` INTEGER NOT NULL, `name` TEXT NOT NULL, `order_classify` INTEGER NOT NULL, `parent_chapter_id` INTEGER NOT NULL, `user_control_set_top` INTEGER NOT NULL, `visible` INTEGER NOT NULL)",
         "fields": [
           {
@@ -432,7 +432,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'b276a6ad90af000df2c4f5fd6a90420e')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '1d5561f741ceb9ff18aaee157b9708ad')"
     ]
   }
 }
