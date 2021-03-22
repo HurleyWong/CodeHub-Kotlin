@@ -26,6 +26,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar"
         android:usesCleartextTraffic="true"
+        android:largeHeap="true"
         tools:replace="android:theme"
         tools:targetApi="m">
 
