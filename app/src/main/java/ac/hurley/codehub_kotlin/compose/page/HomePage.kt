@@ -14,10 +14,9 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import ac.hurley.codehub_kotlin.R
 import ac.hurley.codehub_kotlin.compose.ReqError
 import ac.hurley.codehub_kotlin.compose.ReqSuccess
-import ac.hurley.codehub_kotlin.compose.view.BannerCard
-import ac.hurley.codehub_kotlin.compose.view.ErrorContent
-import ac.hurley.codehub_kotlin.compose.view.LoadingContent
-import ac.hurley.codehub_kotlin.compose.view.SwipeToRefreshAndLoadLayout
+import ac.hurley.codehub_kotlin.compose.view.*
+import ac.hurley.codehub_kotlin.compose.viewmodel.REFRESH_STOP
+import ac.hurley.model.room.entity.Article
 import ac.hurley.model.room.entity.Banner
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.*
@@ -46,6 +45,7 @@ fun HomePage(
      */
     if (refresh != REFRESH_START && load != REFRESH_START) {
         viewModel.getBanner()
+        viewModel.getArticleList(isRefresh = false)
     }
 
     var listState = rememberLazyListState()
@@ -68,13 +68,13 @@ fun HomePage(
                 stateOfLoad = load == REFRESH_START,
                 onRefresh = {
                     viewModel.getBanner()
-                    // TODO
+                    viewModel.getArticleList()
                     viewModel.onRefreshChanged(REFRESH_START)
                 },
                 onLoad = {
                     viewModel.onLoadStateChanged(REFRESH_START)
                     viewModel.onPageChanged((viewModel.page.value ?: 0) + 1)
-                    // TODO
+                    viewModel.getArticleList()
                 },
                 content = {
                     when (bannerData) {
@@ -83,20 +83,53 @@ fun HomePage(
                         }
                         is ReqError -> {
                             ErrorContent(article = {
-                                // TODO
+                                viewModel.getArticleList()
                                 viewModel.getBanner()
                             })
                         }
                         is ReqSuccess<*> -> {
                             val data = bannerData as ReqSuccess<List<Banner>>
+                            // UI 界面
                             Column {
-                                LazyRow(modifier = Modifier.padding(end = 16.dp)) {
+                                LazyRow {
                                     items(data.data) {
                                         BannerCard(
                                             it,
                                             actions.article,
-                                            Modifier.padding(start = 16.dp, bottom = 16.dp)
+                                            Modifier.padding(start = 16.dp, bottom = 8.dp)
                                         )
+                                    }
+                                }
+
+                                when (articleData) {
+                                    AppLoading -> {
+                                        Spacer(modifier = Modifier.height(0.dp))
+                                    }
+                                    // 如果请求成功
+                                    is ReqSuccess<*> -> {
+                                        viewModel.onLoadStateChanged(REFRESH_STOP)
+                                        viewModel.onRefreshChanged(REFRESH_STOP)
+                                        val articleList = articleData as ReqSuccess<List<Article>>
+                                        // 如果数据为空，就重新调用刷新布局
+                                        if (articleList.data.isEmpty()) {
+                                            return@SwipeToRefreshAndLoadLayout
+                                        }
+                                        LazyColumn(modifier = modifier, state = listState) {
+                                            itemsIndexed(articleList.data) { index, article ->
+                                                ArticleListItem(
+                                                    article = article,
+                                                    index = index,
+                                                    toArticle = { urlArgs ->
+                                                        actions.article(urlArgs)
+                                                    })
+                                            }
+                                        }
+                                    }
+                                    // 如果请求失败
+                                    is ReqError -> {
+                                        Spacer(modifier = Modifier.height(0.dp))
+                                        viewModel.onLoadStateChanged(REFRESH_STOP)
+                                        viewModel.onRefreshChanged(REFRESH_STOP)
                                     }
                                 }
                             }

@@ -3,6 +3,7 @@ package ac.hurley.codehub_kotlin.compose.viewmodel
 import ac.hurley.codehub_kotlin.compose.AppState
 import ac.hurley.codehub_kotlin.compose.repository.HomeRepository
 import ac.hurley.model.room.entity.Article
+import ac.hurley.net.base.QueryHomeArticle
 import android.app.Application
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -44,7 +45,15 @@ class HomeViewModel(application: Application) : BaseViewModel(application = appl
         }
     }
 
+    /**
+     * 获取文章列表
+     */
     fun getArticleList(isLoad: Boolean = false, isRefresh: Boolean = true) {
-//        viewModelScope.launch(Dispatchers.IO) {}
+        viewModelScope.launch(Dispatchers.IO) {
+            homeRepository.getArticleList(
+                _state, _articleDataList, QueryHomeArticle(page.value ?: 0, isRefresh = isRefresh),
+                isLoad = isLoad
+            )
+        }
     }
 }
