@@ -75,6 +75,8 @@ fun ClassifyListPage(
                         // 列表长度
                         val length = data.data.size
 
+                        val classifyData = data.data
+
                         ScrollableTabRow(
                             selectedTabIndex = position ?: 0,
                             modifier = Modifier.wrapContentWidth(),
@@ -100,14 +102,23 @@ fun ClassifyListPage(
                             }
 
                             if (position == 0 && !loadPageState) {
-                                articleViewModel.getDataList(
-                                    QueryArticle(
-                                        // 如果 value 不为空，就等于 value；如果为空，则等于 0
-                                        articleViewModel.page.value ?: 0,
-                                        data.data[0].id,
-                                        true
-                                    )
-                                )
+//                                articleViewModel.getDataList(
+//                                    QueryArticle(
+//                                        // 如果 value 不为空，就等于 value；如果为空，则等于 0
+//                                        articleViewModel.page.value ?: 0,
+//                                        data.data[0].id,
+//                                        true
+//                                    )
+//                                )
+                                val value = articleViewModel.dataLiveData.value
+                                if (value !is ReqSuccess<*>) {
+                                    getDataList(articleViewModel, classifyData)
+                                } else {
+                                    val articleList = value as ReqSuccess<List<Article>>
+                                    if (articleList.data.isEmpty()) {
+                                        getDataList(articleViewModel, classifyData)
+                                    }
+                                }
                             }
                         }
 
@@ -187,18 +198,18 @@ fun ClassifyListPage(
             }
         }
 
-        Button(modifier = Modifier
-            .padding(bottom = 65.dp, end = 8.dp)
-            .align(Alignment.BottomEnd), onClick = {
-            coroutineScope.launch {
-                listState.animateScrollToItem(index = 0)
-            }
-        }) {
-            Image(
-                painter = painterResource(id = R.drawable.img_to_top_normal),
-                contentDescription = ""
-            )
+        if (result is ReqSuccess<*>) {
+            ToTopButton(listState = listState)
         }
     }
+}
 
+fun getDataList(articleViewModel: BasePageViewModel<QueryArticle>, data: List<Classify>) {
+    articleViewModel.getDataList(
+        QueryArticle(
+            articleViewModel.page.value ?: 0,
+            data[0].id,
+            false
+        )
+    )
 }

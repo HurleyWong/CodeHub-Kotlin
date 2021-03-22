@@ -140,4 +140,8 @@ fun HomePage(
             )
         }
     }
+
+    if (articleData is ReqSuccess<*> && bannerData is ReqSuccess<*>) {
+        ToTopButton(listState = listState)
+    }
 }
