@@ -26,6 +26,8 @@
     <string name="login_success">Login Successful</string>
     <string name="register_success">Register Successful</string>
 
+    <string name="no_app">There are no apps installed that support opening this page!</string>
+
     <string name="bad_network">Network Connection Failed</string>
     <string name="network_load_failed">Network Load Failed</string>
 </resources>
