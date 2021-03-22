@@ -11,6 +11,9 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.runBlocking
 import java.io.IOException
 
+/**
+ * DataStore 工具类
+ */
 object DataStoreUtils {
 
     private lateinit var dataStore: DataStore<Preferences>

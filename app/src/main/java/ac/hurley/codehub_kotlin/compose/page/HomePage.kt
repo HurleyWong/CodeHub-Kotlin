@@ -44,8 +44,8 @@ fun HomePage(
      * 如果既没有下拉刷新，也没有上拉加载更多
      */
     if (refresh != REFRESH_START && load != REFRESH_START) {
-        viewModel.getBanner()
         viewModel.getArticleList(isRefresh = false)
+        viewModel.getBanner()
     }
 
     var listState = rememberLazyListState()
@@ -67,6 +67,7 @@ fun HomePage(
                 stateOfRefresh = refresh == REFRESH_START,
                 stateOfLoad = load == REFRESH_START,
                 onRefresh = {
+                    viewModel.onPageChanged(0)
                     viewModel.getBanner()
                     viewModel.getArticleList()
                     viewModel.onRefreshChanged(REFRESH_START)

@@ -34,9 +34,11 @@ fun Main(actions: MainActions, themeViewModel: ThemeViewModel) {
 
     // 定义 UI 界面
     Scaffold(
+        // 主页的背景色
         backgroundColor = MaterialTheme.colors.primary,
         bottomBar = {
             BottomNavigation(
+                // 底部 Nav 的高度
                 Modifier.navigationBarsHeight(additional = 56.dp)
             ) {
                 tabs.forEach { tab ->
