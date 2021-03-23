@@ -20,7 +20,12 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import ac.hurley.codehub_kotlin.R
+import ac.hurley.codehub_kotlin.compose.common.article.shareArticle
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.material.Icon
+import androidx.compose.material.icons.filled.Share
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
 
 @Composable
 fun ArticleBottomBar(
@@ -73,6 +78,24 @@ fun ArticleBottomBar(
                 Icon(
                     imageVector = collectIcon,
                     contentDescription = "收藏"
+                )
+            }
+
+            val context = LocalContext.current
+            IconButton(onClick = {
+                shareArticle(article?.title ?: "", article?.link ?: "", context)
+            }) {
+                Icon(imageVector = Icons.Filled.Share, contentDescription = "分享")
+            }
+
+            Spacer(modifier = Modifier.weight(1f))
+
+            IconButton(onClick = {
+                showToast(R.string.feature_not_available)
+            }) {
+                Icon(
+                    painter = painterResource(id = R.drawable.ic_text_settings),
+                    contentDescription = "字体设置"
                 )
             }
         }

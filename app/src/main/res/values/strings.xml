@@ -33,6 +33,8 @@
     <string name="invalid_password">Invalid Password</string>
     <string name="login_success">Login Successful</string>
     <string name="register_success">Register Successful</string>
+    <string name="share_article">Share Article</string>
+    <string name="feature_not_available">Feature Not Available</string>
 
     <string name="no_app">There are no apps installed that support opening this page!</string>
 

@@ -1,10 +1,13 @@
 package ac.hurley.codehub_kotlin.compose.common.article
 
+import ac.hurley.codehub_kotlin.R
 import ac.hurley.codehub_kotlin.compose.common.rememberX5WebViewWithLifecycle
 import ac.hurley.codehub_kotlin.compose.repository.CollectRepository
 import ac.hurley.codehub_kotlin.compose.view.ArticleBottomBar
 import ac.hurley.model.room.entity.Article
 import ac.hurley.util.util.getHtmlText
+import android.content.Context
+import android.content.Intent
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.*
@@ -13,6 +16,7 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
+import com.blankj.utilcode.util.StringUtils
 import kotlinx.coroutines.coroutineScope
 
 @Composable
@@ -86,5 +90,16 @@ private fun FunctionalityNotAvailablePopup(onDismiss: () -> Unit) {
                 Text(text = "CLOSE")
             }
         }
+    )
+}
+
+fun shareArticle(title: String, post: String, context: Context) {
+    val intent = Intent(Intent.ACTION_SEND).apply {
+        type = "text/plain"
+        putExtra(Intent.EXTRA_TITLE, title)
+        putExtra(Intent.EXTRA_TEXT, post)
+    }
+    context.startActivity(
+        Intent.createChooser(intent, StringUtils.getString(R.string.share_article))
     )
 }
