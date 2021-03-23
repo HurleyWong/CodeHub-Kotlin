@@ -8,13 +8,11 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Card
 import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.graphics.painter.BitmapPainter
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.blankj.utilcode.util.ImageUtils
 import com.blankj.utilcode.util.LogUtils
@@ -30,7 +28,7 @@ fun BannerCard(banner: Banner, navigateTo: (Article) -> Unit, modifier: Modifier
                 Article(title = banner.title, link = banner.url)
             )
         })) {
-            val bannerModifer = Modifier.size(300.dp, 180.dp)
+            val bannerModifier = Modifier.size(300.dp, 180.dp)
 
             // 如果数据库中不存在已有的轮播图路径
             if (banner.filePath == "") {
@@ -45,7 +43,7 @@ fun BannerCard(banner: Banner, navigateTo: (Article) -> Unit, modifier: Modifier
                 // 加载本地图片
                 val bitmap = ImageUtils.getBitmap(banner.filePath)
                 Image(
-                    modifier = bannerModifer,
+                    modifier = bannerModifier,
                     painter = BitmapPainter(bitmap.asImageBitmap()),
                     contentDescription = "",
                     contentScale = ContentScale.Crop

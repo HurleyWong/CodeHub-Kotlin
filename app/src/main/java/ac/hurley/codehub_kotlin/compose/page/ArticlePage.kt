@@ -1,6 +1,8 @@
 package ac.hurley.codehub_kotlin.compose.common.article
 
 import ac.hurley.codehub_kotlin.compose.common.rememberX5WebViewWithLifecycle
+import ac.hurley.codehub_kotlin.compose.repository.CollectRepository
+import ac.hurley.codehub_kotlin.compose.view.ArticleBottomBar
 import ac.hurley.model.room.entity.Article
 import ac.hurley.util.util.getHtmlText
 import androidx.compose.foundation.layout.fillMaxSize
@@ -11,6 +13,7 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
+import kotlinx.coroutines.coroutineScope
 
 @Composable
 fun ArticlePage(article: Article?, onBack: () -> Unit) {
@@ -27,7 +30,10 @@ fun ArticleContent(article: Article?, onBack: () -> Unit) {
             showDialog = false
         }
     }
+
     val x5WebView = rememberX5WebViewWithLifecycle()
+    val coroutineScope = rememberCoroutineScope()
+    val collectRepository = CollectRepository()
 
     Scaffold(
         topBar = {
@@ -51,10 +57,20 @@ fun ArticleContent(article: Article?, onBack: () -> Unit) {
             ) { x5WebView ->
                 x5WebView.loadUrl(article?.link)
             }
+        },
+        bottomBar = {
+            ArticleBottomBar(
+                article = article,
+                coroutineScope = coroutineScope,
+                collectRepository = collectRepository
+            )
         }
     )
 }
 
+/**
+ * 功能暂不可用的弹窗
+ */
 @Composable
 private fun FunctionalityNotAvailablePopup(onDismiss: () -> Unit) {
     AlertDialog(

@@ -1,9 +1,7 @@
 package ac.hurley.net.base
 
-import ac.hurley.net.service.HomeService
-import ac.hurley.net.service.LoginService
-import ac.hurley.net.service.OfficialService
-import ac.hurley.net.service.ProjectService
+import ac.hurley.net.service.*
+import android.app.Service
 
 object CodeHubNetwork {
 
@@ -79,6 +77,26 @@ object CodeHubNetwork {
 
     // 获取公众号列表下的文章
     suspend fun getWxArticle(page: Int, cid: Int) = officialService.getWxArticle(page, cid)
+
+    /**
+     * 收藏相关操作
+     */
+    private val collectService = ServiceManager.create(CollectService::class.java)
+
+    /**
+     * 获取收藏的文章列表
+     */
+    suspend fun getCollectList(page: Int) = collectService.getCollectionList(page)
+
+    /**
+     * 对该文章进行收藏
+     */
+    suspend fun collect(id: Int) = collectService.collect(id)
+
+    /**
+     * 对该文章取消收藏
+     */
+    suspend fun cancelCollect(id: Int) = collectService.cancelCollect(id)
 }
 
 data class QueryHomeArticle(var page: Int, var isRefresh: Boolean)

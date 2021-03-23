@@ -18,6 +18,14 @@
     <string name="hide_password">Hide Password</string>
     <string name="forget_password">Forget Password?</string>
 
+    <!-- Collect -->
+    <string name="collect">Collect</string>
+    <string name="collect_success">Collect Successfully</string>
+    <string name="collect_failed">Collect Failed</string>
+    <string name="cancel_collect">Cancel Collect</string>
+    <string name="cancel_collect_success">Cancel Collection</string>
+    <string name="cancel_collect_failed">Failed to Cancel Collection</string>
+
     <!-- Tips -->
     <string name="unavailable">Unavailable</string>
     <string name="dismiss">Dismiss</string>
